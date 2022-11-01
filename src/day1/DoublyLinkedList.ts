@@ -30,6 +30,16 @@ export default class DoublyLinkedList<T> {
         this.head = node;
     }
     insertAt(item: T, idx: number): void {
+        if(idx > this.length) {
+            throw new Error("out of bounds")
+        } else if(idx == this.length) {
+            this.append(item);
+            return;
+        } else if(idx === 0) {
+            this.prepend(item);
+            return;
+        }
+
         this.length++;
         const node = {value: item} as Node<T>;
         let current = this.head;
